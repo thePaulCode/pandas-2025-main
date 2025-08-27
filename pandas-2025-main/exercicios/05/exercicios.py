@@ -65,14 +65,13 @@ clientes.sort_values(by="QtdePontos", ascending=True).head(1)
 
 # %%
 # 05.05 - Selecione a primeira transação diária de cada cliente.
-# TODO
 import pandas as pd
 
 transacoes = pd.read_csv("../../data/transacoes.csv", sep=";")
 transacoes.head()
 
 # %%
-#  ordenar pela data de criação
+# ordenar pela data de criação
 transacoes = transacoes.sort_values(by="DtCriacao")
     
 transacoes
@@ -85,3 +84,5 @@ transacoes
 transacoes.drop_duplicates(keep="first", subset=["IdCliente", "Data"])
 # %%
 # última transacao no dia
+transacoes.drop_duplicates(keep="last", subset=["IdCliente", "Data"])
+
