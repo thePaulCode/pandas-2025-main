@@ -80,9 +80,21 @@ transacoes
 transacoes["Data"] = pd.to_datetime(transacoes["DtCriacao"].str.replace(r"\s\+\d{4}\sUTC", "", regex=True), errors="coerce").dt.date
 transacoes
 # %%
+
+
+# %%
+transacoes["Horas"] = pd.to_datetime(transacoes["DtCriacao"].str.replace(r"\s\+\d{4}\sUTC", "", regex=True), errors="coerce").dt.time
+# %%
+transacoes.head()
+# %%
 # primeira transacao no dia
-transacoes.drop_duplicates(keep="first", subset=["IdCliente", "Data"])
+primeira_transacao = transacoes.drop_duplicates(keep="first", subset=["IdCliente", "Data"])
+primeira_transacao
 # %%
 # última transacao no dia
-transacoes.drop_duplicates(keep="last", subset=["IdCliente", "Data"])
+ultima_transacao = transacoes.drop_duplicates(keep="last", subset=["IdCliente", "Data"])
+ultima_transacao
+# %%
 
+pd.concat([ultima_transacao, primeira_transacao])
+# %%
