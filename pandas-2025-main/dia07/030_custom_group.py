@@ -32,6 +32,7 @@ def life_time(x:pd.Series):
 
 (transacoes.groupby(by=["IdCliente"])
             .agg({
-                "DtCriacao":[life_time]
-            }))
+                "DtCriacao":[life_time],
+            }).sort_values(by=("DtCriacao", "life_time"), ascending=False)
+)
 # %%
